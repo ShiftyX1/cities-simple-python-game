@@ -32,12 +32,16 @@ class GameCities():
     def player_plays(self, user_answer):
         while True:
             if user_answer[0] == self.computer_answer[-1]:
-                letter_key_list = self.cities_data[user_answer[-1]]
-                
+                try:
+                    i = user_answer[-1]
+                    letter_key_list = self.cities_data[i]
+                except KeyError:
+                    i = user_answer[-2]
+                    letter_key_list = self.cities_data[i]
                 try:    
                     self.computer_answer = letter_key_list[random.randint(0, len(letter_key_list) - 1)]
                 except ValueError:
-                    print(f"Похоже я не знаю больше городов на букву {user_answer[-1].capitalize()} :(\nПохоже Вы победили!")
+                    print(f"Похоже я не знаю больше городов на букву {i.capitalize()} :(\nПохоже Вы победили!")
                     self.player_win = 1
                     break
 
