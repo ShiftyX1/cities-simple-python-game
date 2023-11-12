@@ -11,7 +11,9 @@ while True:
     if check.match(user_answer) == True:
         print("Ввод доступен только кириллицой!")
         continue
-
+    elif check.check_cities(user_answer=user_answer) == 1:
+        print(f"Такого города нет в нашей базе данных :(\nПопробуйте написать название города в другом формате.\nИли сообщите об ошибке.")
+        continue
     #if user_answer in cities_list_all:
     try:
         game.computer_plays(user_answer=user_answer)

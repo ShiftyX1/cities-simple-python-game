@@ -9,6 +9,7 @@ class GameCities():
         self.list_of_used_cities = []
         self.fails = 0
         self.player_win = 0
+        self.check_city_error = 0
 
     def computer_plays(self, user_answer):
         while True:
@@ -24,7 +25,7 @@ class GameCities():
             letter_key_list.remove(self.computer_answer)
             self.list_of_used_cities.append(self.computer_answer.casefold())
             self.list_of_used_cities.append(user_answer)
-            print(self.computer_answer)
+            print(f"Ответ компьютера: {self.computer_answer}")
             return self.computer_answer
             break
     
@@ -43,18 +44,31 @@ class GameCities():
                 letter_key_list.remove(self.computer_answer)
                 self.list_of_used_cities.append(self.computer_answer.casefold())
                 self.list_of_used_cities.append(user_answer)
-                print(self.list_of_used_cities)
-                print(self.cities_data)
-                print(self.computer_answer)
+                print(f"Ответ компьютера: {self.computer_answer}")
             else:
                 self.fails += 1
                 print(f"Неправильно! {self.fails}-я ошибка из 3 возможных!")
             break
 
 
-class Checks():
+class Checks(GameCities):
     def __init__(self):
         self.is_ru_alphabet = True
 
     def match(self, text, alphabet=set('abcdefghijklmnopqrstuvwxyz1234567890')):
         return not alphabet.isdisjoint(text.lower())
+
+    def check_cities(self, user_answer):
+        x = str(input()).casefold()
+
+        with open('cities.json', 'r', encoding='utf-8') as it:
+            data = json.load(it)
+
+        list = data[user_answer[0]]
+
+        if user_answer.capitalize() in list:
+            self.check_city_error = 0
+        else:
+            self.check_city_error = 1
+
+        return self.check_city_error
