@@ -29,9 +29,10 @@ while True:
             user_answer = str(input("Компьютер ответил, ваш ответ: ")).casefold()
             game.player_plays(user_answer=user_answer)
             if game.fails == 3:
+                print("Вы проиграли!")
                 break
-    
-    print("Вы проиграли!")
+            elif game.player_win == 1:
+                break
     break
 
     
