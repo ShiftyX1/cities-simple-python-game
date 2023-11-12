@@ -63,7 +63,6 @@ class Checks(GameCities):
         return not alphabet.isdisjoint(text.lower())
 
     def check_cities(self, user_answer):
-        x = str(input()).casefold()
 
         with open('cities.json', 'r', encoding='utf-8') as it:
             data = json.load(it)
