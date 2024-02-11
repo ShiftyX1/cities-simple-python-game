@@ -36,6 +36,9 @@ def game_with_bot(game=game, check=check):
                 elif check.check_cities(user_answer=user_answer) == 1:
                     print(f"Такого города нет в нашей базе данных :(\nПопробуйте написать название города в другом формате.\nИли сообщите об ошибке.")
                     continue
+                elif check.check_cities(user_answer=user_answer) == 2:
+                    print("Ожидался ввод! :(")
+                    continue
                 game.player_plays(user_answer=user_answer)
                 if game.fails == 3:
                     print("Вы проиграли!")
@@ -54,7 +57,7 @@ def hot_seat_play(game=game, check=check):
 while True:
     print("""Добро пожаловать в игру в города!
             Выберите режим игры: 
-            1)Играть против компьютером
+            1)Играть против компьютера
             2)Играть один на один с человеком (Hot-Seat) (Work In Progress)""")
 
     user_choice = int(input("Введите цифру соответствующую вашему выбору: "))

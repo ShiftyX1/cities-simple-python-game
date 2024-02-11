@@ -67,8 +67,11 @@ class Checks(GameCities):
         with open('cities.json', 'r', encoding='utf-8') as it:
             data = json.load(it)
 
-        list = data[user_answer[0]]
-
+        try:
+            list = data[user_answer[0]]
+        except IndexError:
+            self.check_city_error = 2
+            return self.check_city_error
         if user_answer.capitalize() in list:
             self.check_city_error = 0
         else:
